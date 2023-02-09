@@ -38,7 +38,7 @@ ______________________________________________________
 
 ### Contributors:
 [//]: <> (Who worked on this application? Link to their GitHubs.)
-
+Rob Schlereth/Rachel Brendel PM: Kayla Gordon
 ### Learning Goals:
 [//]: <> (What were the learning goals of this project? What tech did you work with?)
 
