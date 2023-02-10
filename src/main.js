@@ -9,6 +9,8 @@ var formPage = document.querySelector(".poster-form")
 var formBtn = document.querySelector(".show-form") 
 var saveBtn = document.querySelector(".show-saved")
 var savePage = document.querySelector(".saved-posters")
+var takeMeBackBtn = document.querySelector(".show-main")
+var backToMainBtn = document.querySelector(".back-to-main")
 
 
 // we've provided you with some data to work with 👇
@@ -118,6 +120,8 @@ window.addEventListener("load", getRandomPoster)
 randomButton.addEventListener("click", getRandomPoster)
 formBtn.addEventListener("click", showFormPage)
 saveBtn.addEventListener("click", showSavedPage)
+takeMeBackBtn.addEventListener("click", takeMeBack)
+backToMainBtn.addEventListener("click", takeMeBack)
 
 
 // functions and event handlers go here 👇
@@ -146,4 +150,8 @@ function showSavedPage() {
   mainPage.classList.add('hidden')
 } 
 
+function takeMeBack() {
+  mainPage.classList.remove('hidden')
+
+}
 
