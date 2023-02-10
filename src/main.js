@@ -7,6 +7,10 @@ var randomButton = document.querySelector(".show-random")
 var mainPage = document.querySelector(".main-poster")
 var formPage = document.querySelector(".poster-form")
 var formBtn = document.querySelector(".show-form") 
+var saveBtn = document.querySelector(".show-saved")
+var savePage = document.querySelector(".saved-posters")
+
+
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -113,6 +117,7 @@ var currentPoster;
 window.addEventListener("load", getRandomPoster)
 randomButton.addEventListener("click", getRandomPoster)
 formBtn.addEventListener("click", showFormPage)
+saveBtn.addEventListener("click", showSavedPage)
 
 
 // functions and event handlers go here 👇
@@ -136,5 +141,9 @@ function showFormPage() {
   mainPage.classList.add('hidden')
 } 
 
+function showSavedPage() {
+  savePage.classList.remove('hidden')
+  mainPage.classList.add('hidden')
+} 
 
 
