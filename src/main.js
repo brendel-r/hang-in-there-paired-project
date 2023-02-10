@@ -4,6 +4,9 @@ var posterTitle = document.querySelector(".poster-title")
 var posterQuote = document.querySelector(".poster-quote")
 var randomButton = document.querySelector(".show-random")
 
+var mainPage = document.querySelector(".main-poster")
+var formPage = document.querySelector(".poster-form")
+var formBtn = document.querySelector(".show-form") 
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -109,6 +112,7 @@ var currentPoster;
 
 window.addEventListener("load", getRandomPoster)
 randomButton.addEventListener("click", getRandomPoster)
+formBtn.addEventListener("click", showFormPage)
 
 
 // functions and event handlers go here 👇
@@ -125,7 +129,12 @@ function getRandomPoster() {
   posterImage.src = randomImage
   posterTitle.innerText = randomTitle
   posterQuote.innerText = randomQuote
+
 }
+function showFormPage() {
+  formPage.classList.remove('hidden')
+  mainPage.classList.add('hidden')
+} 
 
 
 
