@@ -166,6 +166,8 @@ unHideMainPage();
 
 
 function savePoster() {
+  
+  if (!savedPosters.includes(currentPoster))
   savedPosters.push(currentPoster)
   console.log(savedPosters)
 }
