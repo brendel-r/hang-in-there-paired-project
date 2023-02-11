@@ -6,12 +6,14 @@ var posterQuote = document.querySelector(".poster-quote")
 var mainPage = document.querySelector(".main-poster")
 var formPage = document.querySelector(".poster-form")
 var savePage = document.querySelector(".saved-posters")
+var savedPosterGrid = document.querySelector(".saved-posters-grid")
 var showSavedBtn = document.querySelector(".show-saved")
 var randomBtn = document.querySelector(".show-random")
 var showFormBtn = document.querySelector(".show-form") 
 var takeMeBackBtn = document.querySelector(".show-main")
 var backToMainBtn = document.querySelector(".back-to-main")
 var makePosterBtn = document.querySelector(".make-poster")
+var savePosterBtn = document.querySelector(".save-poster")
 var imageInput = document.querySelector("#poster-image-url")
 var titleInput = document.querySelector("#poster-title")
 var quoteInput = document.querySelector("#poster-quote")
@@ -126,6 +128,7 @@ showSavedBtn.addEventListener("click", showSavePage)
 takeMeBackBtn.addEventListener("click", takeMeBack)
 backToMainBtn.addEventListener("click", backToMain)
 makePosterBtn.addEventListener("click", createPoster)
+savePosterBtn.addEventListener("click", savePoster)
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -142,6 +145,8 @@ function getRandomPoster() {
   posterTitle.innerText = randomTitle
   posterQuote.innerText = randomQuote
 
+  currentPoster = new Poster(randomImage, randomTitle, randomQuote)
+
 }
 
 function createPoster(event) {
@@ -156,7 +161,32 @@ function createPoster(event) {
   console.log(createPoster)
 hideFormPage();
 unHideMainPage();
+  currentPoster = userPoster 
 }
+
+
+function savePoster() {
+  savedPosters.push(currentPoster)
+  console.log(savedPosters)
+}
+
+function displaySavedPosters() {
+
+  savedPosterGrid.innerHTML = ""
+  for (i = 0; i < savedPosters.length; i++) {
+  console.log(savedPosters)
+  savedPosterGrid.innerHTML += `
+    <article class="mini-poster">
+      <img class="poster-img" src="${savedPosters[i].imageURL}" alt="nothin' to see here">
+        <h2 class="poster-title">${savedPosters[i].title}</h2>
+        <h4 class="poster-quote">${savedPosters[i].quote}</h4>
+    </article>`
+  }
+}
+  // <h2>${savePoster.posterTitle}<h2>
+  
+
+
 
 function hideMainPage() {
   mainPage.classList.add('hidden')
@@ -187,8 +217,9 @@ function showFormPage() {
 } 
 
 function showSavePage() {
- hideMainPage();
- unHideSavePage();
+  hideMainPage();
+  unHideSavePage();
+  displaySavedPosters();
 } 
 
 function takeMeBack() {
