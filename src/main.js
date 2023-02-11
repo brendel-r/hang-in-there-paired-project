@@ -2,16 +2,19 @@
 var posterImage = document.querySelector(".poster-img")
 var posterTitle = document.querySelector(".poster-title")
 var posterQuote = document.querySelector(".poster-quote")
-var randomButton = document.querySelector(".show-random")
 
 var mainPage = document.querySelector(".main-poster")
 var formPage = document.querySelector(".poster-form")
-var formBtn = document.querySelector(".show-form") 
-var saveBtn = document.querySelector(".show-saved")
 var savePage = document.querySelector(".saved-posters")
+var showSavedBtn = document.querySelector(".show-saved")
+var randomBtn = document.querySelector(".show-random")
+var showFormBtn = document.querySelector(".show-form") 
 var takeMeBackBtn = document.querySelector(".show-main")
 var backToMainBtn = document.querySelector(".back-to-main")
-
+var makePosterBtn = document.querySelector(".make-poster")
+var imageInput = document.querySelector("#poster-image-url")
+var titleInput = document.querySelector("#poster-title")
+var quoteInput = document.querySelector("#poster-quote")
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -117,12 +120,12 @@ var currentPoster;
 // event listeners go here 👇
 
 window.addEventListener("load", getRandomPoster)
-randomButton.addEventListener("click", getRandomPoster)
-formBtn.addEventListener("click", showFormPage)
-saveBtn.addEventListener("click", showSavedPage)
+randomBtn.addEventListener("click", getRandomPoster)
+showFormBtn.addEventListener("click", showFormPage)
+showSavedBtn.addEventListener("click", showSavePage)
 takeMeBackBtn.addEventListener("click", takeMeBack)
-backToMainBtn.addEventListener("click", takeMeBack)
-
+backToMainBtn.addEventListener("click", backToMain)
+makePosterBtn.addEventListener("click", createPoster)
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -140,18 +143,60 @@ function getRandomPoster() {
   posterQuote.innerText = randomQuote
 
 }
-function showFormPage() {
-  formPage.classList.remove('hidden')
+
+function createPoster(event) {
+  event.preventDefault();
+  var userPoster = new Poster(imageInput.value, titleInput.value, quoteInput.value);
+  images.push(imageInput.value);
+  posterImage.src = imageInput.value;
+  titles.push(titleInput.value);
+  posterTitle.innerText = titleInput.value;
+  quotes.push(quoteInput.value);
+  posterQuote.innerText = quoteInput.value;
+  console.log(createPoster)
+hideFormPage();
+unHideMainPage();
+}
+
+function hideMainPage() {
   mainPage.classList.add('hidden')
+}
+
+function unHideMainPage() {
+  mainPage.classList.remove('hidden')
+}
+
+function hideFormPage() {
+  formPage.classList.add('hidden')
+}
+function unHideFormPage() {
+  formPage.classList.remove('hidden')
+}
+
+function hideSavePage() {
+  savePage.classList.add('hidden')
+}
+
+function unHideSavePage() {
+  savePage.classList.remove('hidden')
+}
+
+function showFormPage() {
+  unHideFormPage();
+  hideMainPage();
 } 
 
-function showSavedPage() {
-  savePage.classList.remove('hidden')
-  mainPage.classList.add('hidden')
+function showSavePage() {
+ hideMainPage();
+ unHideSavePage();
 } 
 
 function takeMeBack() {
-  mainPage.classList.remove('hidden')
-
+  hideFormPage();
+  unHideMainPage();
 }
 
+function backToMain() {
+  hideSavePage();
+  unHideMainPage();
+}
