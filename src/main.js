@@ -2,7 +2,6 @@
 var posterImage = document.querySelector(".poster-img")
 var posterTitle = document.querySelector(".poster-title")
 var posterQuote = document.querySelector(".poster-quote")
-
 var mainPage = document.querySelector(".main-poster")
 var formPage = document.querySelector(".poster-form")
 var savePage = document.querySelector(".saved-posters")
@@ -129,6 +128,7 @@ takeMeBackBtn.addEventListener("click", takeMeBack)
 backToMainBtn.addEventListener("click", backToMain)
 makePosterBtn.addEventListener("click", createPoster)
 savePosterBtn.addEventListener("click", savePoster)
+savedPosterGrid.addEventListener("dblclick", removePoster)
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -166,30 +166,32 @@ unHideMainPage();
 
 
 function savePoster() {
-  
   if (!savedPosters.includes(currentPoster))
   savedPosters.push(currentPoster)
-  console.log(savedPosters)
 }
 
 function displaySavedPosters() {
-
   savedPosterGrid.innerHTML = ""
-  for (i = 0; i < savedPosters.length; i++) {
-  console.log(savedPosters)
+  for (var i = 0; i < savedPosters.length; i++) {
   savedPosterGrid.innerHTML += `
-    <article class="mini-poster">
+    <div class="mini-poster" id="${savedPosters[i].id}">
       <img class="poster-img" src="${savedPosters[i].imageURL}" alt="nothin' to see here">
-        <h2 class="poster-title">${savedPosters[i].title}</h2>
-        <h4 class="poster-quote">${savedPosters[i].quote}</h4>
-    </article>`
+      <h2 class="poster-title">${savedPosters[i].title}</h2>
+      <h4 class="poster-quote">${savedPosters[i].quote}</h4>
+    </div>`
   }
 }
-  // <h2>${savePoster.posterTitle}<h2>
+
+function removePoster(event){
+  var removePoster = event.target.closest("div").id
+  event.target.closest("div").remove()
+  for (var i = 0; i < savedPosters.length; i++) {
+   if (savedPosters[i].id == removePoster){
+   savedPosters.splice(i, 1)
+   }
+  }
+}
   
-
-
-
 function hideMainPage() {
   mainPage.classList.add('hidden')
 }
